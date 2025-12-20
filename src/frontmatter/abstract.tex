@@ -1,0 +1,14 @@
+
+
+\chapter*{ABSTRACT}
+\phantomsection
+\addcontentsline{toc}{chapter}{ABSTRACT}
+
+\noindent\textbf{ABSTRACT GUIDE:} 150-300 words, include: Problem context, Approach, Key results, Impact. Avoid citations, unexpanded acronyms, detailed implementation.
+
+\bigskip
+
+This report presents the development and evaluation of an intelligent, adaptive scheduling system for the University Course Timetabling Problem (UCTP) using a hybrid approach combining NSGA-II genetic algorithms with reinforcement learning-based hyper-heuristic control. UCTP is an NP-hard combinatorial optimization problem requiring the assignment of courses to time slots, rooms, and instructors while satisfying complex hard and soft constraints. The implemented system features a modular architecture with multi-objective optimization (minimizing hard constraint violations and soft constraint penalties separately), CPU-parallelized fitness evaluation, and a trained PPO agent that adaptively selects from 20 repair heuristics based on a 39-dimensional population state vector. Experiments on an institutional-scale dataset from Tribhuvan University (444 courses generating 668 sessions, 37 student groups, 181 instructors, 67 rooms) demonstrate the system's ability to generate high-quality timetables through progressive experimental modes. The hybrid GA-RL architecture successfully balances exploration and exploitation, with the reinforcement learning controller learning effective phase-dependent strategies for heuristic selection. Performance analysis reveals significant improvements in constraint satisfaction rates and Pareto front quality compared to baseline NSGA-II, validating the hyper-heuristic approach for large-scale educational timetabling.
+
+\vspace{1em}
+\noindent\textit{\textbf{Keywords}}---Combinatorial optimization, constraint satisfaction, genetic algorithm, hyper-heuristics, metaheuristic search, NP-hard problems, reinforcement learning, university course timetabling problem.

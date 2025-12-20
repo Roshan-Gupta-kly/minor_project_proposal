@@ -1,0 +1,129 @@
+{
+    "workbench.editor.showTabs": "multiple",
+    "workbench.editor.tabSizing": "shrink",
+    "editor.formatOnSave": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex + glossaries + bibtex (full)",
+            "tools": [
+                "pdflatex",
+                "makeglossaries",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex + glossaries (no bib)",
+            "tools": [
+                "pdflatex",
+                "makeglossaries",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "latexmk (pdf)",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "pdflatex + bibtex",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "fast_pdflatex",
+            "tools": [
+                "pdflatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode", // Suppress most warnings during the process
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%DIR%/build/", // Store auxiliary files here
+                "%DOC%" // Compile the document
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode", // Suppress most warnings during the process
+                "-file-line-error",
+                "-output-directory=%DIR%/build", // Output directory for auxiliary files
+                "%DOC%" // Compile the document
+            ]
+        },
+        {
+            "name": "makeglossaries",
+            "command": "makeglossaries",
+            "args": [
+                "-d",
+                "build",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "build/%DOCFILE%" // Run BibTeX on the aux file in build directory
+            ],
+            "env": {}
+        }
+    ],
+    // "latex-workshop.latex.autoClean.run": "onBuilt",  // Automatically clean auxiliary files after build
+    "latex-workshop.latex.recipe.default": "fast_pdflatex", // Default recipe with glossaries
+    "latex-workshop.linting.run": "onType", // Lint as you type
+    "latex-workshop.latex.outDir": "%DIR%/build", // Output directory for PDFs (final PDF goes here)
+    "security.workspace.trust.untrustedFiles": "ask", // Prompt before opening untrusted files
+    "workbench.sideBar.location": "right", // Move the sidebar to the right
+    "editor.mouseWheelZoom": true, // Enable mouse wheel zoom in the editor
+    "markdown.preview.typographer": true, // Enable typographer for Markdown preview
+    "debug.onTaskErrors": "debugAnyway", // Debug even when there are task errors
+    "editor.wordWrap": "on", // Enable word wrapping in the editor
+    // Error and warning filtering
+    // Hiding files and folders that are unnecessary or clutter
+    "files.exclude": {
+        "**/build/*": true, // Hide all files inside the `build/temp` folder (even if created by LaTeX)
+        "**/*.aux": true, // Hide any .aux files across the project
+        "**/*.log": true, // Hide any .log files
+        "**/*.toc": true, // Hide any .toc files
+        "**/*.out": true, // Hide any .out files
+        "**/*.bkp": true, // Hide any backup files
+        "**/*.glo": true, // Hide glossary temp files
+        "**/*.acn": true, // Hide acronym temp files
+        "**/*.alg": true, // Hide acronym log files
+        "**/*.ist": true // Hide makeindex style files
+    },
+    "latexlint.disabledRules": [
+        "LLCref",
+        "LLJapaneseSpace",
+        "LLBracketMissing"
+    ],
+}
