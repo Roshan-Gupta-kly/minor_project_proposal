@@ -1,4 +1,5 @@
 % THAPATHALI CAMPUS ENGINEERING report CLASS
+% PLEASE DO NOT MODIFY THIS FILE DIRECTLY.
 % Version: 1.0
 % Date: December 15, 2025
 % Description: IEEE-compliant report class for Thapathali Campus
