@@ -84,15 +84,64 @@ The Kalman Filter operates under the following assumptions \cite{kalman1960filte
 \end{equation}
 
 \section{Random Forest Machine Learning Model}
-A random forest is an ensemble of tree-structured classifiers that vote for the most popular class at an input vector. It performs Tiny\gls{ml} inference to classify events as normal, warning, or accident \cite{breiman2001random}.
+
+A random forest is a classifier consisting of a collection of tree-structured classifiers 
+$\{h(x,\Theta_k), k=1,\dots\}$ where the $\{\Theta_k\}$ are independent identically distributed 
+random vectors and each tree casts a unit vote for the most popular class at input $x$~\cite{breiman2001random}.
+
+The common element in all of these procedures is that for the $k$th tree, a random vector $\Theta_k$ 
+is generated, independent of the past random vectors $\Theta_1, \dots, \Theta_{k-1}$ but with the same distribution; 
+and a tree is grown using the training set and $\Theta_k$, resulting in a classifier $h(x,\Theta_k)$ 
+where $x$ is an input vector. For instance, in bagging the random vector $\Theta$ is generated as the 
+counts in $N$ boxes resulting from $N$ darts thrown at random at the boxes, where $N$ is the number 
+of examples in the training set. In random split selection, $\Theta$ consists of a number of independent 
+random integers between 1 and $K$. The nature and dimensionality of $\Theta$ depends on its use in tree construction. 
+After a large number of trees is generated, they vote for the most popular class. These procedures are called random forests~\cite{scribd2025}.
+
+\subsection{Random Forest Convergence}
+
+Given an ensemble of classifiers $h_1(x),h_2(x),\dots,h_K(x)$, and with the training set drawn 
+at random from the distribution of the random vector $(Y,X)$, define the margin function as:
+
+\begin{equation}
+\text{mg}(X,Y) = \text{avg}_k I(h_k(X)=Y) - \max_{j\neq Y} \text{avg}_k I(h_k(X)=j),
+\end{equation}
+
+where $I(\cdot)$ is the indicator function. The margin measures the extent to which the average 
+number of votes at $(X,Y)$ for the correct class exceeds the average vote for any other class. 
+The larger the margin, the more confidence in the classification. The generalization error is given by:
+
+\begin{equation}
+PE^* = P_{X,Y} (\text{mg}(X,Y) < 0),
+\end{equation}
+
+where the subscripts $X,Y$ indicate that the probability is over the $X,Y$ space.
+
+In random forests, $h_k(X) = h(X, \Theta_k)$. For a large number of trees, it follows from the 
+Strong Law of Large Numbers and the tree structure that:
+
+\textbf{Theorem 1.} As the number of trees increases, for almost all sequences 
+$\Theta_1, \dots$, $PE^*$ converges to
+
+\begin{equation}
+P_{X,Y}\Big(P_\Theta(h(X,\Theta)=Y) - \max_{j\neq Y} P_\Theta(h(X,\Theta)=j) < 0 \Big).
+\end{equation}
+
+This result explains why random forests do not overfit as more trees are added, but produce a limiting 
+value of the generalization error~\cite{breiman2001random}.
 
 \subsection{Key Features of Random Forests}
+
 \begin{itemize}
-    \item High accuracy and robustness to outliers and noise~\cite{breiman2001random}.
-    \item Relatively fast training and inference compared to bagging or boosting~\cite{breiman2001random}.
-    \item Provides useful internal estimates of error, variable importance, and correlation~\cite{breiman2001random}.
-    \item Easily parallelizable and suitable for microcontroller deployment~\cite{scribd2025}.
+    \item Its accuracy is as good as AdaBoost and sometimes better~\cite{breiman2001random}.
+    \item It is relatively robust to outliers and noise~\cite{breiman2001random}.
+    \item It is faster than bagging or boosting~\cite{breiman2001random}.
+    \item Provides useful internal estimates of error, strength, correlation, and variable importance~\cite{breiman2001random}.
+    \item Simple and easily parallelized~\cite{scribd2025}.
 \end{itemize}
+
+
+
 
 \begin{figure}[H]
     \centering
