@@ -1,44 +1,14 @@
 \chapter{LITERATURE REVIEW}
 
 
-WRITING GUIDELINES FOR LITERATURE REVIEW CHAPTER
+Amin et al.~\cite{amin2016accident} proposed an accident detection system that utilizes deceleration data from low-cost Micro Electro Mechanical Systems (MEMS) based Inertial Measurement Units (IMU). Their research demonstrates that the system can accurately detect collisions and maintain location tracking during GPS outages, successfully transmitting critical information to a base station.
 
-The Literature Review critically analyzes existing research, technologies, and solutions related to your project. It is NOT merely a summary of papers but rather a synthesis that compares approaches, identifies gaps, and justifies your project's novelty. This chapter should demonstrate your understanding of the field and position your work within the broader research landscape.
+Furthering the integration of connectivity, Kumar et al.~\cite{kumar2021iot} presented an IoT-based automotive accident detection and classification (ADC) system. By fusing smartphone-built-in sensors with connected external sensors, this system not only detects accidents but also classifies the type of collision. This detailed reporting improves the efficacy of emergency medical services (EMS), fire departments, and towing services by allowing for more precise resource planning.
 
-GENERAL ORGANIZATION PRINCIPLES:
-\begin{itemize}
-    \item Structure by themes or technologies, NOT paper-by-paper summaries
-    \item Write in reverse chronological order within each theme
-    \item Compare and contrast different approaches using tables
-    \item Identify trends and gaps in existing research
-    \item Build argument for why your work is needed
-    \item Cite comprehensively but critically (15-30 high-quality references)
-    \item Each paragraph should relate reviewed work to YOUR project
-\end{itemize}
+Regarding data management, Yao and Atkins~\cite{yao2021smart} introduced the "Smart Black Box" (SBB), which enhances traditional low-bandwidth logging with value-driven, high-bandwidth data capture. The SBB utilizes a deterministic Mealy machine to cache short-term data buffers based on similarity and information value. By formulating compression as a constrained multi-objective optimization problem, the system prioritizes high-value recordings and discard redundant data to optimize finite storage.
 
-HOW TO WRITE - HARDWARE PROJECTS:
+Predivtive modeling is addressed by Yang et al.~\cite{yang2023prediction}, who employed a Random Forest algorithm to predict the severity of traffic accidents. By incorporating four key characteristics such as location, accident form, road information, and driving speed into thier model, they achieved high performance in data classification, resulting in a more efficient and accurate predictive framework.
 
-Review existing hardware systems addressing similar problems. Describe their architectures, components, performance characteristics, and limitations. Compare different: Sensor technologies, Microcontroller platforms (Arduino, Raspberry Pi, ESP32, STM32), Communication protocols (UART, I2C, SPI, WiFi, Bluetooth), Power management strategies.
+This project proposes an integrated vehicle safety system that combines accident prediction and detection with a robust data logging framework for forensic investigation. By utilizing a Random Forest algorithm, the system can identify potential risks and detect vehicle accident in real-time, capturing critical pre-crash and post-crash telemetry. To ensure the accuracy of these observations, the system employs a linear Kalman filter to fuse data from the accelerometer, gyroscope, and GPS, effectively minimizing sensor noise and measurement errors.
 
-For ML-enhanced hardware: Review edge AI approaches, Model optimization techniques (quantization, pruning), Inference engines (TensorFlow Lite, ONNX Runtime), Hardware accelerators (GPUs, TPUs, Neural Processing Units).
-
-Identify gaps: existing systems too expensive, excessive power consumption, lack functionality, cannot operate in specific environments, fail to leverage modern ML techniques.
-
-Include 15-20 high-quality references from IEEE journals, conferences, and technical sources.
-
-HOW TO WRITE - ML/SOFTWARE PROJECTS:
-
-Organize around key themes: Application domain background, Relevant algorithms or architectures (CNNs, Transformers, ensemble methods), Datasets commonly used, Evaluation methodologies, Deployment considerations.
-
-For ML projects: Review foundational algorithms/architectures. Discuss strengths, weaknesses, computational requirements, and applicability. Compare different approaches (traditional ML vs. deep learning, supervised vs. unsupervised). Use tables to compare model architectures, performance metrics, dataset sizes, and computational costs. Critically evaluate methodologies.
-
-For software projects: Review existing systems, frameworks, or applications. Discuss architectural patterns (MVC, microservices, serverless), technology stacks, scalability approaches, UI paradigms. Compare commercial vs. open-source alternatives.
-
-Identify research gaps: existing models don't generalize to your domain, available software lacks features, current solutions don't scale, insufficient research comparing approaches.
-
-Aim for 20-30 high-quality references from top-tier venues (NeurIPS, ICML, CVPR, ACL, SIGMOD) and industry technical reports.
-
-STRUCTURE SUGGESTIONS:
-section Related Hardware/Software Systems, section Machine Learning Approaches (if applicable), section Datasets and Benchmarks, section Evaluation Methodologies, section Research Gaps and Our Contribution
-
-LaTeX quick refs: Cite with cite key, Use label and reference via Section ref, Use comparison tables with label and reference via Table ref
+Furthermore, the system addresses data management challenges through an event summarization technique. This method prioritizes the storage of relevant incident data, successfully reducing overall storage capacity requirements by half without compromising the integrity of the information needed for future investigations. Compromising the integrity of the information needed for future investigations.

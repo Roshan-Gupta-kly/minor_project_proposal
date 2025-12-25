@@ -1,16 +1,12 @@
-\chapter{RESULTS AND ANALYSIS}
+\chapter{EXPECTED OUTCOMES}
 
-%  WRITING GUIDELINES FOR RESULTS AND ANALYSIS CHAPTER
-%  ====================================================
-The Results and Analysis chapter presents the outcomes of your project and critically analyzes
-them. This chapter demonstrates whether your system meets requirements, compares performance
-against objectives and baselines, and interprets findings. Results should be presented objectively
-with appropriate visualizations, while analysis provides context and explanation. This chapter should be full of charts, tables, and figures illustrating your system's performance and behaviour.
+\begin{enumerate}
+    \item \textbf{Accident Prediction \& Crash Detection} \\
+    The system is expected to analyze multisensory fused data including acceleration, angular velocity, heading direction, fire detection, and crash impact signals to compute a real-time accident risk-score. Based on this risk score, the system will predict the potential accident scenarios and detect crash occurrences under impact conditions.
 
+    \item \textbf{EDR - Event Data Recorder} \\
+    The Event Data Recorder (EDR) module is expected to continuously record and store structured sensor and event data in real time. When an accident occurs, the EDR preserves critical event information including sensor readings and system decisions. The purpose of this module is to provide reliable event data for post-accident analysis and investigation.
 
-%  LaTeX quick refs:
-\begin{itemize}
-    \item Always reference figures and tables in the text before they appear.
-    \item Use the cleveref package; write \verb|\cref{fig:label}| or \verb|\Cref{tab:label}| for automatic formatting (add \verb|\usepackage{cleveref}| to the preamble).
-    \item Keep captions descriptive and use unique labels per chapter (e.g., \texttt{fig:my-figure}, \texttt{tab:results}).
-\end{itemize}
+    \item \textbf{Alert and SOS Signals} \\
+    The system is expected to trigger real-time alerts or warning signals such as buzzer activation, to notify the driver upon detecting high risk-score scenarios for accidents. In the event of a confirmed accident, the system generates SOS signals and transmits them to nearby helplines via the GSM module.
+\end{enumerate}

@@ -1,6 +1,165 @@
 \chapter{SYSTEM ARCHITECTURE AND METHODOLOGY}
 
-Present overall system design, component interactions, and methods to achieve objectives.
-Enable readers to understand system structure before implementation details.
+\section{Proposed System Architecture}
+\subsection{Proposed Sytem Block Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{src/images/figures/block.jpg}
+    \caption{Block Diagram of Proposed System Architecture}
+    \label{fig:Block Diagram}
+\end{figure}
 
-\textbf{Customize the sections below based on your project's nature (hardware, software, ML, etc.). and also include relevant diagrams. }
+\section{Working Principle}
+The proposed system uses a combination of multisensor fusion and TinyML based event classification (Random Forest) to monitor vehicles in pre-event and post-event analysis in real-time that responds to potential accidents and alerts in case of any time of accident. The system is built around two microcontrollers effectively separated for one being for multifusion and another for verifying the accident parameters via ML model for either prediction or alert. 
+
+The ESP32S3 Module I is responsible for acquisition of continuous data from multiple sensors. The multiple sensors includes accelerometer, gyroscope, magnetometer, a GPS module, a flame sensor, and a crash sensor respectively. These sensors collectively provide the information in a comprehensive manner regarding the motion, orientation, location and critical environment conditions of a vehicle at a given state. A sudden spike in a particular model is then forwarded into another module as by using decision inferences.
+Multisensor fusion algorithm - Kalman Filter is used, where the algorithm integrates reading from all sensors to produce a robust and reliable estimation of state, minimization of the noise and transient errors from the individual sensors accordingly. The decision inference mechanism aforementioned deviates and forwards the data only that has significant deviations from normal operating conditions in the system. The relevant features of the potential abnormal events are extracted and summarized to the raw sensor reading into meaningly indicators such as acceleration magnitude, orientation angles, sudden speed changes, or activation of crash and flame sensors, which form the input for machine learning classification.
+
+The ESP32S2 Module II is where our model performs to classify , normal, warning or an accident event. We use a Random forest model which performs TinyMl inference in our module. In the case of a normal event, the system continues monitoring without intervention. If the event is classified as a warning, the system triggers a local alert, activating a buzzer to notify the driver and allowing time to observe the situation before taking further action. When an accident is detected, the system immediately activates a GSM module to send an SOS message to predefined emergency contacts, ensuring timely assistance. A brief observation window is included to confirm persistent abnormal conditions before sending the SOS message, reducing the likelihood of false alarms.
+
+Overall, the system combines real-time sensor monitoring, robust data fusion, and lightweight machine learning to provide a reliable, fast, and energy-efficient solution for intelligent vehicle accident detection. By integrating both preventive warnings and emergency communication, the system enhances vehicle safety while maintaining low computational requirements suitable for microcontroller-based embedded platforms.
+
+
+\section{Kalman Filter Algorithm}
+
+The Kalman Filter simplifies the complex computational procedure of data fusion by incorporating several assumptions regarding system dynamics, estimations, states, and the properties of errors and noise. It provides a solution to a linear quadratic estimation problem.
+
+Essentially, it formulates estimates and processes the instantaneous data of a linear dynamic system disturbed by random white noise by utilizing a sequence of measurements. The algorithm is structured in a predictor--corrector format.
+
+The algorithm can be divided into two distinct phases:
+\begin{itemize}
+    \item Time Update (Prediction)
+    \item Measurement Update (Correction)
+\end{itemize}
+
+\subsection{Assumptions}
+
+\begin{enumerate}
+    \item The state transition is linear and given by:
+    \begin{equation}
+        \mathbf{s}_t = \mathbf{A}\mathbf{s}_{t-1} + \mathbf{B}\mathbf{u}_t + \mathbf{w}_t
+    \end{equation}
+    where $\mathbf{s}_t$ is the state vector, $\mathbf{u}_t$ is the control input, and $\mathbf{w}_t$ is zero-mean Gaussian process noise.
+
+    \item The measurement model is linear and given by:
+    \begin{equation}
+        \mathbf{z}_t = \mathbf{H}\mathbf{s}_t + \mathbf{v}_t
+    \end{equation}
+    where $\mathbf{z}_t$ is the measurement vector and $\mathbf{v}_t$ is zero-mean Gaussian measurement noise.
+
+    \item The system is continuous.
+\end{enumerate}
+
+\subsection{Time Update (Prediction Phase)}
+
+In the time update phase, the state estimate and covariance are projected forward.
+
+\subsubsection*{State Prediction}
+\begin{equation}
+    \hat{\mathbf{s}}_{t|t-1} = \mathbf{A}\hat{\mathbf{s}}_{t-1|t-1} + \mathbf{B}\mathbf{u}_t
+\end{equation}
+
+\subsubsection*{Covariance Prediction}
+\begin{equation}
+    \mathbf{P}_{t|t-1} = \mathbf{A}\mathbf{P}_{t-1|t-1}\mathbf{A}^T + \mathbf{Q}
+\end{equation}
+
+After the time update phase, the Gaussian distribution originally characterized by 
+$(\hat{\mathbf{s}}_{t-1}, \mathbf{P}_{t-1})$ is transformed into a new Gaussian characterized by 
+$(\hat{\mathbf{s}}_{t|t-1}, \mathbf{P}_{t|t-1})$.
+
+\subsection{Measurement Update (Correction Phase)}
+
+The measurement update phase incorporates the measurement into the predicted state.
+
+\subsubsection*{Kalman Gain}
+\begin{equation}
+    \mathbf{K}_t = \mathbf{P}_{t|t-1}\mathbf{H}^T
+    \left(
+    \mathbf{H}\mathbf{P}_{t|t-1}\mathbf{H}^T + \mathbf{R}
+    \right)^{-1}
+\end{equation}
+
+\subsubsection*{Innovation (Measurement Residual)}
+\begin{equation}
+    \mathbf{y}_t = \mathbf{z}_t - \mathbf{H}\hat{\mathbf{s}}_{t|t-1}
+\end{equation}
+
+\subsubsection*{State Update}
+\begin{equation}
+    \hat{\mathbf{s}}_{t|t} =
+    \hat{\mathbf{s}}_{t|t-1} + \mathbf{K}_t \mathbf{y}_t
+\end{equation}
+
+\subsubsection*{Covariance Update}
+\begin{equation}
+    \mathbf{P}_{t|t} =
+    \left(
+    \mathbf{I} - \mathbf{K}_t \mathbf{H}
+    \right)
+    \mathbf{P}_{t|t-1}
+\end{equation}
+
+\section{Random Forest Machine Learning Model}
+
+A random forest is a classifier consisting of a collection of tree-structured classifiers 
+$\{h(x,\Theta_k), k=1,\dots\}$ where the $\{\Theta_k\}$ are independent identically distributed 
+random vectors and each tree casts a unit vote for the most popular class at input $x$~\cite{breiman2001random}.
+
+The common element in all of these procedures is that for the $k$th tree, a random vector $\Theta_k$ 
+is generated, independent of the past random vectors $\Theta_1, \dots, \Theta_{k-1}$ but with the same distribution; 
+and a tree is grown using the training set and $\Theta_k$, resulting in a classifier $h(x,\Theta_k)$ 
+where $x$ is an input vector. For instance, in bagging the random vector $\Theta$ is generated as the 
+counts in $N$ boxes resulting from $N$ darts thrown at random at the boxes, where $N$ is the number 
+of examples in the training set. In random split selection, $\Theta$ consists of a number of independent 
+random integers between 1 and $K$. The nature and dimensionality of $\Theta$ depends on its use in tree construction. 
+After a large number of trees is generated, they vote for the most popular class. These procedures are called random forests~\cite{scribd2025}.
+
+\subsection{Random Forest Convergence}
+
+Given an ensemble of classifiers $h_1(x),h_2(x),\dots,h_K(x)$, and with the training set drawn 
+at random from the distribution of the random vector $(Y,X)$, define the margin function as:
+
+\begin{equation}
+\text{mg}(X,Y) = \text{avg}_k I(h_k(X)=Y) - \max_{j\neq Y} \text{avg}_k I(h_k(X)=j),
+\end{equation}
+
+where $I(\cdot)$ is the indicator function. The margin measures the extent to which the average 
+number of votes at $(X,Y)$ for the correct class exceeds the average vote for any other class. 
+The larger the margin, the more confidence in the classification. The generalization error is given by:
+
+\begin{equation}
+PE^* = P_{X,Y} (\text{mg}(X,Y) < 0),
+\end{equation}
+
+where the subscripts $X,Y$ indicate that the probability is over the $X,Y$ space.
+
+In random forests, $h_k(X) = h(X, \Theta_k)$. For a large number of trees, it follows from the 
+Strong Law of Large Numbers and the tree structure that:
+
+\textbf{Theorem 1.} As the number of trees increases, for almost all sequences 
+$\Theta_1, \dots$, $PE^*$ converges to
+
+\begin{equation}
+P_{X,Y}\Big(P_\Theta(h(X,\Theta)=Y) - \max_{j\neq Y} P_\Theta(h(X,\Theta)=j) < 0 \Big).
+\end{equation}
+
+This result explains why random forests do not overfit as more trees are added, but produce a limiting 
+value of the generalization error~\cite{breiman2001random}.
+
+\subsection{Key Features of Random Forests}
+
+\begin{itemize}
+    \item Its accuracy is as good as AdaBoost and sometimes better~\cite{breiman2001random}.
+    \item It is relatively robust to outliers and noise~\cite{breiman2001random}.
+    \item It is faster than bagging or boosting~\cite{breiman2001random}.
+    \item Provides useful internal estimates of error, strength, correlation, and variable importance~\cite{breiman2001random}.
+    \item Simple and easily parallelized~\cite{scribd2025}.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{src/images/figures/flowchart.jpg}
+    \caption{Flowchart of Proposed System Architecture}
+    \label{fig:flowchart}
+\end{figure}

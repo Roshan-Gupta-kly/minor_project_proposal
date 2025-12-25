@@ -57,6 +57,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{standalone}
 
+
 % LISTS
 \RequirePackage{enumitem}
 \setlist[itemize]{topsep=3pt,itemsep=0pt,parsep=2pt,leftmargin=*}
