@@ -62,6 +62,4 @@ The Markdown files are a checklist/reference only (the actual report is written 
 
   ## for automatic abbreviations generations
   run command-
-  pdflatex main
-  makeglossaries main
-pdflatex main
+  pdflatex main, makeglossaries main, pdflatex main
