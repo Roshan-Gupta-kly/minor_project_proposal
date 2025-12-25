@@ -58,4 +58,10 @@ The Markdown files are a checklist/reference only (the actual report is written 
 ## Editor Recommendations
 
 - VS Code + LaTeX Workshop, TeXstudio, or Overleaf will all work. For VS Code, configure LaTeX Workshop to run `latexmk`.
-- Using VS Code, or Overleaf will make compilation easier. 
+- Using VS Code, or Overleaf will make compilation easier.
+
+  ## for automatic abbreviations generations
+  run command-
+  pdflatex main
+  makeglossaries main
+pdflatex main
