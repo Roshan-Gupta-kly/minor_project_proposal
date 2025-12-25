@@ -3,7 +3,7 @@
 \section{Hardware Implementation}
 
 \textbf{Accelerometer and Gyroscope Sensors}\\
-An \gls{acc} and \gls{gy} sensors together form an Inertial Measurement Unit (IMU) used to measure linear acceleration and angular velocity of the vehicle. These sensors continuously monitor dynamic motions such as acceleration, braking, skidding, tilting, sharp turns, rollover, and collision forces.
+An \gls{acc} and \gls{gy} together form an \gls{imu} used to measure linear acceleration and angular velocity of the vehicle. These sensors continuously monitor dynamic motions such as acceleration, braking, skidding, tilting, sharp turns, rollover, and collision forces.
 
 \textbf{Reasons to Use Accelerometer and Gyroscope}
 \begin{itemize}
@@ -12,13 +12,13 @@ An \gls{acc} and \gls{gy} sensors together form an Inertial Measurement Unit (IM
      \item Provides continuous, low-noise motion data suitable for real-time processing.
      \item Low power consumption and minimal computational overhead.
      \item Compact, cost-effective, and easily integrable with microcontrollers.
-     \item Highly compatible with rule-based and ML-based accident detection systems.
+     \item Highly compatible with rule-based and \gls{ml}-based accident detection systems.
 \end{itemize}
 
-The combined motion data from the accelerometer and gyroscope allows effective feature extraction for detecting unsafe driving behavior, loss of vehicle stability, and crash events, making the IMU a key component in accident prediction and vehicle safety applications.
+The combined motion data from the \gls{acc} and \gls{gy} allows effective feature extraction for detecting unsafe driving behavior, loss of vehicle stability, and crash events, making the \gls{imu} a key component in accident prediction and vehicle safety applications.
 
 \textbf{Suitable Accelerometer and Gyroscope Sensor: MPU6050}\\
-The MPU6050 is a 6-axis MEMS IMU that integrates a 3-axis accelerometer and a 3-axis gyroscope along with an internal Digital Motion Processor (DMP). It outputs motion data digitally via the I\textsuperscript{2}C interface. By combining acceleration and rotational data, it effectively detects sudden motion changes and crash occurrences.
+The MPU6050 is a 6-axis MEMS \gls{imu} that integrates a 3-axis \gls{acc} and a 3-axis \gls{gy} along with an internal Digital Motion Processor (DMP). It outputs motion data digitally via the I\textsuperscript{2}C interface. By combining acceleration and rotational data, it effectively detects sudden motion changes and crash occurrences.
 
 \begin{figure}[H]
     \centering
@@ -30,7 +30,7 @@ The MPU6050 is a 6-axis MEMS IMU that integrates a 3-axis accelerometer and a 3-
 %------------------------------------------------------------
 
 \textbf{Magnetometer Sensor}\\
-A \gls{ms} is a sensor that measures the strength and direction of a magnetic field, typically the Earth’s magnetic field, to determine vehicle orientation and heading.
+A \gls{ms} measures the strength and direction of a magnetic field, typically the Earth’s magnetic field, to determine vehicle orientation and heading.
 
 \textbf{Reasons to Use Magnetometer}
 \begin{itemize}
@@ -38,11 +38,11 @@ A \gls{ms} is a sensor that measures the strength and direction of a magnetic fi
      \item Improves long-term stability of motion estimation.
      \item Low power consumption.
      \item High-resolution digital output.
-     \item Cost-effective and ML-friendly.
+     \item Cost-effective and \gls{ml}-friendly.
 \end{itemize}
 
 \textbf{HMC5883L MEMS-Based Magnetometer}\\
-The HMC5883L is a 3-axis MEMS magnetometer that uses magnetoresistive sensing elements to measure magnetic field components along the X, Y, and Z axes and provides digital output through the I\textsuperscript{2}C interface.
+The HMC5883L is a 3-axis MEMS \gls{ms} that uses magnetoresistive sensing elements to measure magnetic field components along the X, Y, and Z axes and provides digital output through the I\textsuperscript{2}C interface.
 
 \begin{figure}[H]
     \centering
@@ -62,7 +62,7 @@ A \gls{gps} sensor determines the absolute geographical position of a vehicle by
      \item Measures vehicle speed and heading.
      \item Enables precise accident location reporting.
      \item Low power consumption for continuous tracking.
-     \item Stable and reliable data output for ML processing.
+     \item Stable and reliable data output for \gls{ml} processing.
 \end{itemize}
 
 \begin{figure}[H]
@@ -83,7 +83,7 @@ A \gls{fs} detects the presence of fire by sensing infrared radiation emitted du
      \item Fast response time.
      \item Simple microcontroller interface.
      \item Low power consumption and cost.
-     \item Suitable for rule-based and ML-based decision systems.
+     \item Suitable for rule-based and \gls{ml}-based decision systems.
 \end{itemize}
 
 \begin{figure}[H]
@@ -118,10 +118,10 @@ A \gls{cs}, also known as an impact sensor, detects sudden mechanical shocks or 
 %------------------------------------------------------------
 
 \textbf{GSM Module}\\
-A \gls{gsm} module enables embedded systems to send and receive data over cellular networks using a SIM card. It allows communication with predefined contacts such as emergency services and family members.
+A \gls{gsm} module enables embedded systems to send and receive data over cellular networks using a \gls{sim}. It allows communication with predefined contacts such as emergency services and family members.
 
 \textbf{GSM Module (SIM800L)}\\
-The GSM module communicates with the controller via UART using AT commands. Once a SIM card is inserted, the module registers with the nearest cellular base station. During emergency events such as crashes or fire detection, the module automatically transmits SMS alerts to predefined mobile numbers.
+The GSM module communicates with the controller via \gls{uart} using \gls{at} commands. Once a \gls{sim} is inserted, the module registers with the nearest cellular base station. During emergency events such as crashes or fire detection, the module automatically transmits SMS alerts to predefined mobile numbers.
 
 \textbf{Reasons to Use GSM Module}
 \begin{itemize}
@@ -143,21 +143,21 @@ The GSM module communicates with the controller via UART using AT commands. Once
 %------------------------------------------------------------
 
 \textbf{ESP32-S3 Microcontroller}\\
-The \gls{esp32-s3} is a high-performance, low-power microcontroller developed by Espressif Systems for advanced embedded and IoT applications. It integrates wireless connectivity and AI acceleration features, making it suitable for real-time sensing and edge intelligence.
+The \gls{esp32s3} is a high-performance, low-power microcontroller developed by Espressif Systems for advanced embedded and IoT applications. It integrates wireless connectivity and AI acceleration features, making it suitable for real-time sensing and edge intelligence.
 
 \textbf{ESP32-S3 Module}\\
-The \gls{esp32-s3} is based on a dual-core Xtensa\textsuperscript{\textregistered} 32-bit LX7 processor operating up to 240 MHz. It includes built-in Wi-Fi and Bluetooth Low Energy (BLE 5.0), along with rich peripheral support such as SPI, I\textsuperscript{2}C, UART, ADC, PWM, and GPIOs. Support for external flash and PSRAM enables efficient handling of sensor data and ML models.
+The \gls{esp32s3} is based on a dual-core Xtensa\textsuperscript{\textregistered} 32-bit LX7 processor operating up to 240 MHz. It includes built-in Wi-Fi and \gls{ble}, along with rich peripheral support such as \gls{spi}, I\textsuperscript{2}C, \gls{uart}, \gls{adc}, \gls{pwm}, and \gls{gpio}s. Support for external flash and PSRAM enables efficient handling of sensor data and \gls{ml} models.
 
 \textbf{Reasons to Use ESP32-S3}
 \begin{itemize}
      \item High processing capability.
-     \item Optimized for machine learning inference.
+     \item Optimized for \gls{ml} inference.
      \item Supports multiple sensors simultaneously.
      \item Low power operation.
 \end{itemize}
 
 \textbf{How This Is Compatible with Machine Learning}\\
-The \gls{esp32-s3} is specifically designed for edge machine learning applications. Its LX7 processor supports vector instructions that accelerate mathematical operations used in ML inference. Frameworks such as TensorFlow Lite for Microcontrollers and ESP-DSP enable deployment of trained models directly on the device. In this project, the ESP32-S3 performs real-time sensor fusion, feature extraction, and decision inference locally, reducing latency and eliminating cloud dependency. This makes it ideal for safety-critical applications such as crash and fire detection.
+The \gls{esp32s3} is specifically designed for edge \gls{ml} applications. Its LX7 processor supports vector instructions that accelerate mathematical operations used in \gls{ml} inference. Frameworks such as TensorFlow Lite for Microcontrollers and ESP-DSP enable deployment of trained models directly on the device. In this project, the \gls{esp32s3} performs real-time sensor fusion, feature extraction, and decision inference locally, reducing latency and eliminating cloud dependency. This makes it ideal for safety-critical applications such as crash and fire detection.
 
 \begin{figure}[H]
     \centering
@@ -165,8 +165,3 @@ The \gls{esp32-s3} is specifically designed for edge machine learning applicatio
     \caption{ESP32-S3 Module}
     \label{fig:ESP32}
 \end{figure}
-
-%------------------------------------------------------------
-
-% \section{Software Implementation}
-% Now you can safely start writing the software implementation here without errors.
