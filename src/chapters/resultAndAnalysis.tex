@@ -1,12 +1,17 @@
 \chapter{EXPECTED OUTCOMES}
 
-\begin{enumerate}
-    \item \textbf{Accident Prediction \& Crash Detection} \\
-    The system is expected to analyze multisensory fused data including \gls{acc}, \gls{gy}, heading direction, fire detection (\gls{fs}), and crash impact signals (\gls{cs}) to compute a real-time accident risk-score. Based on this risk score, the system will predict the potential accident scenarios and detect crash occurrences under impact conditions using \gls{ml}-based inference.
+\section{Accident Prediction and Crash Detection}
+The system is expected to analyze multisensory fused data including \gls{acc}, \gls{gy}, heading direction, fire detection (\gls{fs}), and crash impact signals (\gls{cs}) to compute a real-time accident risk score. Based on this risk score, the system will predict potential accident scenarios and detect crash occurrences under impact conditions using \gls{ml}-based inference.
 
-    \item \textbf{EDR - Event Data Recorder} \\
-    The \gls{edr} module is expected to continuously record and store structured sensor and event data in real time. When an accident occurs, the \gls{edr} preserves critical event information including sensor readings and system decisions. The purpose of this module is to provide reliable event data for post-accident analysis and investigation.
+\section{Event Data Recorder (EDR)}
+The \gls{edr} module is expected to continuously record and store structured sensor and event data in real time. When an accident occurs, the \gls{edr} preserves critical event information, including sensor readings and system decisions. This recorded data provides reliable evidence for post-accident analysis and investigation.
 
-    \item \textbf{Alert and SOS Signals} \\
-    The system is expected to trigger real-time alerts or warning signals such as buzzer activation to notify the driver upon detecting high risk-score scenarios for accidents. In the event of a confirmed accident, the system generates \gls{sos} signals and transmits them to nearby helplines via the \gls{gsm} module.
-\end{enumerate}
+\section{Alert and SOS Signaling Mechanism}
+The system is expected to trigger real-time alerts or warning signals, such as buzzer activation, to notify the driver upon detecting high accident risk scenarios. In the event of a confirmed accident, the system generates \gls{sos} signals and transmits them to nearby emergency helplines through the \gls{gsm} module.
+
+\begin{figure}[H]
+    \centering
+   \includegraphics[width=15cm]{src/images/figures/outcome.jpg}
+    \caption{Expected Outcomes of the Proposed Vehicle Safety System}
+    \label{fig:expected_outcomes}
+\end{figure}

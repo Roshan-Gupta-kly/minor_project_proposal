@@ -9,6 +9,11 @@
     \label{fig:Block Diagram}
 \end{figure}
 
+The block diagram shows us an accident detection and prediction system for vehicles. This system is really good at monitoring vehicles in time using edge computing. The accident detection and prediction system has two parts. Each part of the accident detection and prediction system uses an ESP32 S3 microcontroller. The ESP32 S3 microcontroller is very good at handling the intelligence tasks that the accident detection and prediction system needs.
+In the beginning Module I is where all the information comes from. It takes in information from sensors that feel movement like the accelerometer, gyroscope and magnetometer. It also gets information from sensors that feel the environment, like the flame and crash sensors. At the time a GPS module keeps track of where the vehicle is. All this information is looked at by the Multisensor Fusion Algorithm. This algorithm helps get rid of any noise and puts all the different pieces of information together. This creates a picture of what is going on with the vehicle at that moment. The Multisensor Fusion Algorithm is very important for the vehicle. It helps the vehicles Module I make sense of all the information it gets from the motion sensors and environmental sensors. This information is then put together into events. This is better than using lots of pieces of data that do not make sense on their own. The machine learning model can understand events more easily than it can understand these small pieces of data. The machine learning model has a time with events.
+The main brain of the system is in Module II, where a TinyML Inference engine does its job. This TinyML Inference engine runs a Random Forest model. The Random Forest model was trained on a computer. Then made smaller so it can run on the small hardware of the microcontroller. The system processes data on the device itself which is called the edge. This means the system does not have to wait for the cloud to respond, which is very important when something goes wrong like, during a crash. The TinyML Inference engine and the Random Forest model help the system make decisions quickly.
+
+
 \section{Working Principle}
 The proposed system uses a combination of multisensor fusion and Tiny\gls{ml}-based event classification (Random Forest) to monitor vehicles in pre-event and post-event analysis in real time, responding to potential accidents and generating alerts when necessary. The system is built around two microcontrollers, with one responsible for multisensor fusion and the other for verifying accident parameters via the \gls{ml} model for prediction or alert.
 
@@ -141,11 +146,12 @@ value of the generalization error~\cite{breiman2001random}.
 \end{itemize}
 
 
-
-
+\subsection{Flowchart of Proposed System Architecture}
 \begin{figure}[H]
     \centering
     \includegraphics[width=15cm]{src/images/figures/flowchart.jpg}
     \caption{Flowchart of Proposed System Architecture}
     \label{fig:flowchart}
 \end{figure}
+
+The system utilizes two ESP32 S3 modules to continuously monitor environment data, combining readings through a Multisensor Fusion Algorithm using the ESP32 S3 Module I to identify potential emergencies. When a significant sensor deviation is detected, the system extracts specific data features and employs a pre-trained Random Forest machine learning model done in the ESP32 S2 Module II to categorize the event as Normal, Warning, or Accident. While "Normal" events are ignored, a "Warning" triggers a buzzer and an "Accident" classification activates the GSM module. To prevent false alarms, the system implements a 5-second verification delay; if the situation does not return to normal within this window, it automatically sends an SOS message before ending the cycle. 

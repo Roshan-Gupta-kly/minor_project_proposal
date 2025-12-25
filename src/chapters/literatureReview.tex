@@ -1,14 +1,45 @@
 \chapter{LITERATURE REVIEW}
 
-\section{Literature Review}
-Amin et al.~\cite{amin2016accident} proposed an accident detection system that utilizes deceleration data from low-cost Micro Electro Mechanical Systems (MEMS) based \gls{imu}. Their research demonstrates that the system can accurately detect collisions and maintain location tracking during \gls{gps} outages, successfully transmitting critical information to a base station.
 
-Furthering the integration of connectivity, Kumar et al.~\cite{kumar2021iot} presented an IoT-based automotive accident detection and classification (ADC) system. By fusing smartphone-built-in sensors with connected external sensors, this system not only detects accidents but also classifies the type of collision. This detailed reporting improves the efficacy of emergency medical services (EMS), fire departments, and towing services by allowing for more precise resource planning.
+This review explores the evolution of vehicle safety systems from simple mechanical trigger-based mechanisms to advanced IoT-enabled sensor integrations and predictive data-driven frameworks.
 
-Regarding data management, Yao and Atkins~\cite{yao2021smart} introduced the "Smart Black Box" (SBB), which enhances traditional low-bandwidth logging with value-driven, high-bandwidth data capture. The SBB utilizes a deterministic Mealy machine to cache short-term data buffers based on similarity and information value. By formulating compression as a constrained multi-objective optimization problem, the system prioritizes high-value recordings and discards redundant data to optimize finite storage.
+\section{Sensor-Based Detection and Localization}
+The foundation of modern accident detection systems lies in the reliable utilization of motion sensors. Amin et al.~\cite{kumar2021iot} developed a cost-effective and reliable accident detection system using Micro-Electro Mechanical Systems (MEMS)-based Inertial Measurement Units (IMU).
 
-Predictive modeling is addressed by Yang et al.~\cite{yang2023prediction}, who employed a Random Forest algorithm to predict the severity of traffic accidents. By incorporating four key characteristics such as location, accident form, road information, and driving speed into their model, they achieved high performance in data classification, resulting in a more efficient and accurate predictive framework.
+\subsection{Methodology:}  
+The proposed system monitors sudden deceleration, which serves as a primary indicator of a collision. GPS is integrated with the IMU to provide continuous vehicle tracking. A key feature of the methodology is the implementation of a dead reckoning technique, which estimates the vehicle’s last known position using IMU data when GPS signals are unavailable, such as in tunnels or dense urban environments.
 
-This project proposes an integrated vehicle safety system that combines accident prediction and detection with a robust data logging framework for forensic investigation. By utilizing a Random Forest algorithm, the system can identify potential risks and detect vehicle accidents in real-time, capturing critical pre-crash and post-crash telemetry. To ensure the accuracy of these observations, the system employs a linear Kalman filter to fuse data from the \gls{acc}, \gls{gy}, and \gls{gps}, effectively minimizing sensor noise and measurement errors.
+\subsection{Outcomes:}  
+The study demonstrated that low-cost MEMS sensors can accurately detect high-impact events while maintaining reliable location estimation. This ensures that precise coordinates can still be transmitted to emergency response units even in areas with poor satellite coverage.
 
-Furthermore, the system addresses data management challenges through an event summarization technique. This method prioritizes the storage of relevant incident data, successfully reducing overall storage capacity requirements by half without compromising the integrity of the information needed for future investigations.
+\section{IoT Integration and Collision Classification}
+Advancing beyond basic accident detection, Kumar et al.~\cite{kumar2021iot} proposed an Internet of Things (IoT)-based Accident Detection and Classification (ADC) system to enhance situational awareness during emergencies.
+
+\subsection{Methodology:}  
+The system employs sensor fusion by combining data from smartphone-based sensors, such as accelerometers and gyroscopes, with external vehicle-mounted sensors. Machine learning algorithms, including Naïve Bayes and Hidden Markov Models, are used to process this multisource data to detect collisions and classify accident types, such as rollovers, side impacts, and head-on collisions.
+
+\subsection{Outcomes:}  
+By identifying the type of accident, the system provides emergency medical services with detailed situational information, enabling improved resource planning. For example, rollover accidents may require specialized rescue equipment, whereas minor collisions may only necessitate traffic control intervention.
+
+\section{Optimized Data Logging}
+As vehicle sensor systems generate increasing volumes of data, efficient storage management becomes critical. Yao and Atkins~\cite{yao2021smart} addressed this challenge by introducing a Smart Black Box (SBB) system focused on optimizing the storage of high-bandwidth data such as video streams and high-frequency telemetry.
+
+\subsection{Methodology:}  
+The SBB treats data logging as an optimization problem using a Mealy machine-based state logic model. A circular buffer continuously overwrites normal driving data, while anomalous or high-value events trigger data locking to preserve critical information.
+
+\subsection{Outcomes:}  
+This selective data retention approach ensures that essential pre-crash and post-crash evidence is preserved while redundant data is discarded. As a result, storage hardware is utilized efficiently without compromising forensic investigation requirements.
+
+\section{Severity Prediction Using Machine Learning}
+Accident severity prediction is equally important for proactive safety planning. Yang et al.~\cite{yang2023prediction} employed a Random Forest algorithm to predict the severity of traffic accidents.
+
+\subsection{Methodology:}  
+The model was trained using key variables including accident location, accident type, road conditions, and vehicle speed. Random Forest operates by constructing multiple decision trees and aggregating their outputs to enhance prediction accuracy and robustness.
+
+\subsection{Outcomes:}  
+The results demonstrated high accuracy in distinguishing between minor and major injury outcomes. Such predictive insights are valuable for smart city infrastructures to identify high-risk zones and improve road safety designs.
+
+\section{Proposed System Contribution}
+Building upon these foundational works, this project proposes an integrated vehicle safety system that combines accident prediction, real-time detection, and robust data logging for forensic analysis. A Random Forest-based model is employed to identify potential accident risks and detect collisions in real time. To enhance data reliability, a linear Kalman filter is used to fuse accelerometer, gyroscope, and GPS data, effectively minimizing sensor noise and measurement errors.
+
+Furthermore, the system incorporates an event summarization technique to address data management challenges. This approach prioritizes the storage of critical incident-related data, reducing overall storage requirements by approximately 50\% without compromising the integrity of information required for post-accident investigations.

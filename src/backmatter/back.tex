@@ -12,7 +12,7 @@
 
 
 \chapter{PROJECT BUDGET}
-The total budget required for the successful completion of the project is estimated to be between \textbf{NPR 8000 - NPR 11000}. This budget covers various aspects of the project, including hardware purchases, component materials, software services, and miscellaneous expenses.
+The total budget required for the successful completion of the project is estimated to be between \textbf{NPR 7000 - NPR 11000}. This budget covers various aspects of the project, including hardware purchases, component materials, software services, and miscellaneous expenses.
 
 \section{Bill of Materials (BOM)}
 This section details all components that will be integrated into the final product/system. These are the materials that constitute the deliverable hardware (if any).
@@ -113,22 +113,25 @@ The project will be executed over a period of approximately 6 months, divided in
 This is the estimated timeline for the project, detailing the key phases and milestones. The project is structured into several stages, each with specific tasks and deliverables.
 \\
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth]{src/images/figures/gantt.jpg} % Replace with actual path to Gantt chart image
-    \caption{Project Gantt Chart}
-    \label{fig:gantt_chart}
-\end{figure}
+    \caption{Project Gantt Schedule}
+\includegraphics[width=\linewidth]{src/images/figures/gantt.jpg}
+\label{tab:gantt_img}
+\end{table}
 
 \chapter{FEASIBILITY}
 
-This project is proposed to be implemented using hardware components such as the \gls{esp32s3} microcontroller, \gls{acc}, \gls{gy}, \gls{ms}, \gls{fs}, \gls{cs}, ultrasonic sensor, \gls{gps} module, and \gls{gsm} module. These components are readily available in the market and are cost-effective, making the system economically feasible for real-world deployment.
+        \section{Technical Feasibility} 
+        The proposed system is implemented using the \gls{esp32s3} microcontroller integrated with multiple sensors, including \gls{acc}, \gls{gy}, \gls{ms}, \gls{fs}, \gls{cs}, an ultrasonic sensor, along with \gls{gps} and \gls{gsm} modules. The software development is carried out using open-source platforms such as the Arduino \gls{ide} and \gls{espidf}, while Python-based libraries including NumPy and Pandas are used for sensor data analysis and \gls{ml} model development. Training and validation datasets are obtained from open-source repositories such as Kaggle and supplemented with real-time sensor data, ensuring reliable model performance and real-world applicability.
 
-The software tools used in this project are free and open-source. Programming of the \gls{esp32s3} is carried out using the Arduino \gls{ide} and \gls{espidf}. For data analysis and \gls{ml} model development, Python-based libraries such as NumPy and Pandas are used. These tools support sensor data processing, feature extraction, and model training during the learning phase of the project.
+        \section{Economic Feasibility} 
+        All hardware components used in the project are readily available and cost-effective, making the overall system economically viable for large-scale deployment. The use of free and open-source software tools eliminates licensing costs, further reducing the total project expenditure. This cost-efficient design supports practical implementation in real-world vehicle safety applications.
 
-The dataset required for training and validating the prototype is planned to be obtained from open-source platforms such as Kaggle, along with real-time data collected from the sensors during testing. This combination helps improve model reliability and provides insight into real-world sensor behavior.
+        \section{Operational Feasibility} 
+        The system operates using a \gls{sim} card and a \gls{gsm}-enabled mobile network, allowing reliable communication without internet dependency. The \gls{gsm} module enables the \gls{esp32s3} to transmit alerts, \gls{sos} messages, and GPS-based location information to predefined contacts or emergency services during accident or fire detection events. This ensures continuous and effective system operation in both urban and remote environments.
 
-The project requires a \gls{sim} card and a \gls{gsm}-enabled mobile network to function effectively. The system is installed in a vehicle with a \gls{sim} card inserted into the \gls{gsm} module, enabling communication over the mobile network. This allows the \gls{esp32s3} to send alerts, \gls{sos} messages, and location information to predefined contacts or emergency services during accident or fire detection events.
+
 
 
 
