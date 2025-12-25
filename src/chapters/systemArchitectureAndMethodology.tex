@@ -22,11 +22,11 @@ Overall, the system combines real-time sensor monitoring, robust data fusion, an
 
 \section{Kalman Filter Algorithm}
 
-The Kalman Filter simplifies the complex computational procedure of data fusion by incorporating several assumptions regarding system dynamics, estimations, states, and the properties of errors and noise. It provides a solution to a linear quadratic estimation problem.
+The Kalman Filter is an optimal recursive estimation algorithm that simplifies the complex computational process of data fusion by introducing assumptions regarding system dynamics, state evolution, and the statistical properties of noise and estimation errors \cite{kalman1960filtering}. It provides an efficient solution to the linear quadratic estimation problem for systems affected by stochastic disturbances.
 
-Essentially, it formulates estimates and processes the instantaneous data of a linear dynamic system disturbed by random white noise by utilizing a sequence of measurements. The algorithm is structured in a predictor--corrector format.
+The Kalman Filter formulates estimates of the internal state of a linear dynamic system by processing a sequence of noisy measurements. The system is assumed to be disturbed by zero-mean Gaussian white noise, and the filter recursively updates the state estimates as new measurements become available \cite{montella2011kalmanreview}. Owing to its recursive structure, the Kalman Filter is well suited for real-time applications such as sensor fusion, navigation, and vehicle safety systems.
 
-The algorithm can be divided into two distinct phases:
+The algorithm follows a predictor--corrector structure and can be divided into two distinct phases:
 \begin{itemize}
     \item Time Update (Prediction)
     \item Measurement Update (Correction)
@@ -34,25 +34,27 @@ The algorithm can be divided into two distinct phases:
 
 \subsection{Assumptions}
 
+The Kalman Filter operates under the following assumptions \cite{kalman1960filtering}:
+
 \begin{enumerate}
-    \item The state transition is linear and given by:
+    \item The system dynamics are linear and described by the state transition equation:
     \begin{equation}
         \mathbf{s}_t = \mathbf{A}\mathbf{s}_{t-1} + \mathbf{B}\mathbf{u}_t + \mathbf{w}_t
     \end{equation}
-    where $\mathbf{s}_t$ is the state vector, $\mathbf{u}_t$ is the control input, and $\mathbf{w}_t$ is zero-mean Gaussian process noise.
+    where $\mathbf{s}_t$ represents the system state vector, $\mathbf{u}_t$ denotes the control input, $\mathbf{A}$ is the state transition matrix, $\mathbf{B}$ is the control input matrix, and $\mathbf{w}_t$ is zero-mean Gaussian process noise with covariance $\mathbf{Q}$.
 
-    \item The measurement model is linear and given by:
+    \item The measurement model is linear and defined as:
     \begin{equation}
         \mathbf{z}_t = \mathbf{H}\mathbf{s}_t + \mathbf{v}_t
     \end{equation}
-    where $\mathbf{z}_t$ is the measurement vector and $\mathbf{v}_t$ is zero-mean Gaussian measurement noise.
+    where $\mathbf{z}_t$ is the measurement vector, $\mathbf{H}$ is the observation matrix, and $\mathbf{v}_t$ is zero-mean Gaussian measurement noise with covariance $\mathbf{R}$.
 
-    \item The system is continuous.
+    \item The process and measurement noises are mutually independent and uncorrelated over time.
 \end{enumerate}
 
 \subsection{Time Update (Prediction Phase)}
 
-In the time update phase, the state estimate and covariance are projected forward.
+In the time update phase, the Kalman Filter predicts the state of the system at the next time step using the system model \cite{durrantwhyte2006multisensor}.
 
 \subsubsection*{State Prediction}
 \begin{equation}
@@ -64,13 +66,11 @@ In the time update phase, the state estimate and covariance are projected forwar
     \mathbf{P}_{t|t-1} = \mathbf{A}\mathbf{P}_{t-1|t-1}\mathbf{A}^T + \mathbf{Q}
 \end{equation}
 
-After the time update phase, the Gaussian distribution originally characterized by 
-$(\hat{\mathbf{s}}_{t-1}, \mathbf{P}_{t-1})$ is transformed into a new Gaussian characterized by 
-$(\hat{\mathbf{s}}_{t|t-1}, \mathbf{P}_{t|t-1})$.
+After the prediction step, the prior estimate of the state is represented by a Gaussian distribution characterized by the mean $\hat{\mathbf{s}}_{t|t-1}$ and covariance $\mathbf{P}_{t|t-1}$.
 
 \subsection{Measurement Update (Correction Phase)}
 
-The measurement update phase incorporates the measurement into the predicted state.
+The measurement update phase corrects the predicted state using the current measurement, minimizing the estimation error covariance \cite{kalman1960filtering}.
 
 \subsubsection*{Kalman Gain}
 \begin{equation}
@@ -99,6 +99,9 @@ The measurement update phase incorporates the measurement into the predicted sta
     \right)
     \mathbf{P}_{t|t-1}
 \end{equation}
+
+The updated state estimate and covariance represent the optimal linear unbiased estimate of the system state under the given assumptions, completing one iteration of the Kalman filtering process \cite{kalman1960filtering}.
+
 
 \section{Random Forest Machine Learning Model}
 
