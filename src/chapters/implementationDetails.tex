@@ -2,10 +2,10 @@
 
 \section{Hardware Implementation}
 
-\textbf{Accelerometer and Gyroscope Sensors}\\
-An \gls{acc} and \gls{gy} together form an \gls{imu} used to measure linear acceleration and angular velocity of the vehicle. These sensors continuously monitor dynamic motions such as acceleration, braking, skidding, tilting, sharp turns, rollover, and collision forces.
+\noindent\textbf{Accelerometer and Gyroscope Sensors}\\
+An \gls{acc} and \gls{gy} together form an \gls{imu} used to measure linear acceleration and angular velocity of the vehicle. These sensors continuously monitor dynamic motions such as acceleration, braking, skidding, tilting, sharp turns, rollover, and collision forces.\\
 
-\textbf{Reasons to Use Accelerometer and Gyroscope}
+\noindent\textbf{Reasons to Use Accelerometer and Gyroscope}
 \begin{itemize}
      \item Measures both linear and rotational motion of the vehicle.
      \item Enables accurate detection of sudden impacts and abnormal movements.
@@ -15,9 +15,9 @@ An \gls{acc} and \gls{gy} together form an \gls{imu} used to measure linear acce
      \item Highly compatible with rule-based and \gls{ml}-based accident detection systems.
 \end{itemize}
 
-The combined motion data from the \gls{acc} and \gls{gy} allows effective feature extraction for detecting unsafe driving behavior, loss of vehicle stability, and crash events, making the \gls{imu} a key component in accident prediction and vehicle safety applications.
+The combined motion data from the \gls{acc} and \gls{gy} allows effective feature extraction for detecting unsafe driving behavior, loss of vehicle stability, and crash events, making the \gls{imu} a key component in accident prediction and vehicle safety applications.\\
 
-\textbf{Suitable Accelerometer and Gyroscope Sensor: MPU6050}\\
+\noindent\textbf{Suitable Accelerometer and Gyroscope Sensor: MPU6050}\\
 The MPU6050 is a 6-axis MEMS \gls{imu} that integrates a 3-axis \gls{acc} and a 3-axis \gls{gy} along with an internal Digital Motion Processor (DMP). It outputs motion data digitally via the I\textsuperscript{2}C interface. By combining acceleration and rotational data, it effectively detects sudden motion changes and crash occurrences.
 
 \begin{figure}[H]
@@ -29,10 +29,10 @@ The MPU6050 is a 6-axis MEMS \gls{imu} that integrates a 3-axis \gls{acc} and a 
 
 %------------------------------------------------------------
 
-\textbf{Magnetometer Sensor}\\
-A \gls{ms} measures the strength and direction of a magnetic field, typically the Earth’s magnetic field, to determine vehicle orientation and heading.
+\noindent\textbf{Magnetometer Sensor}\\
+A \gls{ms} measures the strength and direction of a magnetic field, typically the Earth’s magnetic field, to determine vehicle orientation and heading.\\
 
-\textbf{Reasons to Use Magnetometer}
+\noindent\textbf{Reasons to Use Magnetometer}
 \begin{itemize}
      \item Provides absolute heading reference.
      \item Improves long-term stability of motion estimation.
@@ -41,7 +41,7 @@ A \gls{ms} measures the strength and direction of a magnetic field, typically th
      \item Cost-effective and \gls{ml}-friendly.
 \end{itemize}
 
-\textbf{HMC5883L MEMS-Based Magnetometer}\\
+\noindent\textbf{HMC5883L MEMS-Based Magnetometer}\\
 The HMC5883L is a 3-axis MEMS \gls{ms} that uses magnetoresistive sensing elements to measure magnetic field components along the X, Y, and Z axes and provides digital output through the I\textsuperscript{2}C interface.
 
 \begin{figure}[H]
@@ -53,10 +53,10 @@ The HMC5883L is a 3-axis MEMS \gls{ms} that uses magnetoresistive sensing elemen
 
 %------------------------------------------------------------
 
-\textbf{GPS Sensor}\\
+\noindent\textbf{GPS Sensor}\\
 A \gls{gps} sensor determines the absolute geographical position of a vehicle by receiving signals from multiple satellites. It provides latitude, longitude, speed, altitude, and timestamp information essential for vehicle tracking and accident localization.
-
-\textbf{Reasons to Use GPS Module}
+\\
+\noindent\textbf{Reasons to Use GPS Module}
 \begin{itemize}
      \item Provides accurate real-time latitude and longitude.
      \item Measures vehicle speed and heading.
@@ -74,10 +74,10 @@ A \gls{gps} sensor determines the absolute geographical position of a vehicle by
 
 %------------------------------------------------------------
 
-\textbf{Flame Sensor}\\
-A \gls{fs} detects the presence of fire by sensing infrared radiation emitted during combustion. It is critical for identifying fire hazards following vehicle collisions.
+\noindent\textbf{Flame Sensor}\\
+A \gls{fs} detects the presence of fire by sensing infrared radiation emitted during combustion. It is critical for identifying fire hazards following vehicle collisions.\\
 
-\textbf{Reasons to Use Flame Sensor}
+\noindent\textbf{Reasons to Use Flame Sensor}
 \begin{itemize}
      \item Enables early fire detection.
      \item Fast response time.
@@ -95,10 +95,10 @@ A \gls{fs} detects the presence of fire by sensing infrared radiation emitted du
 
 %------------------------------------------------------------
 
-\textbf{Crash Sensor}\\
+\noindent\textbf{Crash Sensor}\\
 A \gls{cs}, also known as an impact sensor, detects sudden mechanical shocks or collision forces acting on the vehicle.
-
-\textbf{Reasons to Use Crash Sensor}
+\\
+\noindent\textbf{Reasons to Use Crash Sensor}
 \begin{itemize}
      \item Immediate collision detection.
      \item High reliability in impact sensing.
@@ -117,13 +117,13 @@ A \gls{cs}, also known as an impact sensor, detects sudden mechanical shocks or 
 
 %------------------------------------------------------------
 
-\textbf{GSM Module}\\
-A \gls{gsm} module enables embedded systems to send and receive data over cellular networks using a \gls{sim}. It allows communication with predefined contacts such as emergency services and family members.
+\noindent\textbf{GSM Module}\\
+A \gls{gsm} module enables embedded systems to send and receive data over cellular networks using a \gls{sim}. It allows communication with predefined contacts such as emergency services and family members.\\
 
-\textbf{GSM Module (SIM800L)}\\
-The GSM module communicates with the controller via \gls{uart} using \gls{at} commands. Once a \gls{sim} is inserted, the module registers with the nearest cellular base station. During emergency events such as crashes or fire detection, the module automatically transmits SMS alerts to predefined mobile numbers.
+\noindent\textbf{GSM Module (SIM800L)}\\
+The GSM module communicates with the controller via \gls{uart} using \gls{at} commands. Once a \gls{sim} is inserted, the module registers with the nearest cellular base station. During emergency events such as crashes or fire detection, the module automatically transmits SMS alerts to predefined mobile numbers.\\
 
-\textbf{Reasons to Use GSM Module}
+\noindent\textbf{Reasons to Use GSM Module}
 \begin{itemize}
      \item Enables long-distance communication without internet dependency.
      \item Real-time emergency alert transmission via SMS.
@@ -142,13 +142,13 @@ The GSM module communicates with the controller via \gls{uart} using \gls{at} co
 
 %------------------------------------------------------------
 
-\textbf{ESP32-S3 Microcontroller}\\
-The \gls{esp32s3} is a high-performance, low-power microcontroller developed by Espressif Systems for advanced embedded and IoT applications. It integrates wireless connectivity and AI acceleration features, making it suitable for real-time sensing and edge intelligence.
+\noindent\textbf{ESP32-S3 Microcontroller}\\
+The \gls{esp32s3} is a high-performance, low-power microcontroller developed by Espressif Systems for advanced embedded and IoT applications. It integrates wireless connectivity and AI acceleration features, making it suitable for real-time sensing and edge intelligence.\\
 
-\textbf{ESP32-S3 Module}\\
+\noindent\textbf{ESP32-S3 Module}\\
 The \gls{esp32s3} is based on a dual-core Xtensa\textsuperscript{\textregistered} 32-bit LX7 processor operating up to 240 MHz. It includes built-in Wi-Fi and \gls{ble}, along with rich peripheral support such as \gls{spi}, I\textsuperscript{2}C, \gls{uart}, \gls{adc}, \gls{pwm}, and \gls{gpio}s. Support for external flash and PSRAM enables efficient handling of sensor data and \gls{ml} models.
-
-\textbf{Reasons to Use ESP32-S3}
+\\
+\noindent\textbf{Reasons to Use ESP32-S3}
 \begin{itemize}
      \item High processing capability.
      \item Optimized for \gls{ml} inference.
@@ -156,7 +156,7 @@ The \gls{esp32s3} is based on a dual-core Xtensa\textsuperscript{\textregistered
      \item Low power operation.
 \end{itemize}
 
-\textbf{How This Is Compatible with Machine Learning}\\
+\noindent\textbf{How This Is Compatible with Machine Learning}\\
 The \gls{esp32s3} is specifically designed for edge \gls{ml} applications. Its LX7 processor supports vector instructions that accelerate mathematical operations used in \gls{ml} inference. Frameworks such as TensorFlow Lite for Microcontrollers and ESP-DSP enable deployment of trained models directly on the device. In this project, the \gls{esp32s3} performs real-time sensor fusion, feature extraction, and decision inference locally, reducing latency and eliminating cloud dependency. This makes it ideal for safety-critical applications such as crash and fire detection.
 
 \begin{figure}[H]
@@ -165,3 +165,24 @@ The \gls{esp32s3} is specifically designed for edge \gls{ml} applications. Its L
     \caption{ESP32-S3 Module}
     \label{fig:ESP32}
 \end{figure}
+
+\section{Software Implementation}
+The software implementation involves programming the \gls{esp32s3} microcontroller using the Arduino \gls{ide} and \gls{espidf}. The code integrates sensor data acquisition, preprocessing, feature extraction, and decision-making algorithms for accident and fire detection. The \gls{ml} model is trained offline using Python-based libraries such as NumPy and Pandas, and then converted to a format compatible with the \gls{esp32s3} for deployment. The system continuously monitors sensor inputs, processes the data in real-time, and triggers alerts via the GSM module when hazardous events are detected.\\
+
+\noindent\textbf{Arduino IDE}\\
+Arduino IDE is a widely used software platform for writing, compiling, and uploading programs to microcontroller boards such as Arduino and NodeMCU. It provides a simple and intuitive environment that allows developers to efficiently develop embedded applications. The IDE includes a built-in code editor with syntax highlighting, a compiler, and tools for uploading firmware to hardware devices. It also supports a large number of libraries, enabling easy integration of sensors, communication modules, and peripheral devices. Arduino IDE is compatible with multiple operating systems, making it accessible and convenient for developers.\\
+
+\noindent\textbf{TensorFlow}\\
+TensorFlow is an open-source software framework developed by Google for numerical computation and data processing. It provides a flexible platform for handling large datasets, performing mathematical operations, and building computational models. TensorFlow offers a rich set of libraries and tools that help developers process and analyze data efficiently. In this project, it is used as a supportive software tool for data handling and model development during the system design and evaluation phase.\\
+
+\noindent\textbf{VS code IDE}\\
+VS Code IDE is a powerful and versatile code editor developed by Microsoft. It provides a rich set of features for writing, debugging, and managing code across various programming languages. VS Code supports extensions that enhance its functionality, including support for Python development, which is essential for data analysis and \gls{ml} model development in this project. The IDE offers integrated terminal access, version control integration, and customizable settings, making it a preferred choice for developers working on complex software projects.\\
+
+\noindent\textbf{Jupyter Notebook}\\
+Jupyter Notebook is an open-source web application that allows users to create and share documents containing live code, equations, visualizations, and narrative text. It is widely used for data analysis, scientific computing, and machine learning tasks. In this project, Jupyter Notebook serves as a supportive tool for exploratory data analysis, feature engineering, and model training. It provides an interactive environment where developers can write and execute Python code, visualize data using libraries like Matplotlib and Seaborn, and document their findings in a structured format.\\
+
+\section{Datasets}
+The proposed system will be using a sensor-based dataset to train a TinyML model  relying  on the accelerometer, gyroscope, GPS data. The dataset we use will not be the data under crash condition as these kinds of data are difficult to find on internet and difficult to collect ourselves. The better option would be to use the dataset under normal driving  conditions. The data was found on the website “Kaggle”. This data contains the motion sensor-based data collected during various driving conditions including normal vehicle movement sharp turns, road bumps  which are essential for the accurate prediction of accident.\cite{kaggle_dataset2025} 
+\\ \\
+ 
+As given on the website, the devices were fitted on the vehicle as shown in the figure below. Data of many different components including accelerometer, gyroscope, GPS, camera was collected. We plan to use only the data of accelerometers, gyroscope and GPS. \cite{kaggle_notebook2025} The data were produced in three different vehicles, with three different drivers, in three different environments in which there are three different surface types, in addition to variations in conservation state and presence of obstacles and anomalies, such as speed 20 bumps and potholes. The data was collected from three different types of roads i.e. Asphalt Road, Dirt Road and Cobblestone Road. The dataset contains the data of good roads, bad roads, and regular roads. Speed bumps in Cobblestone and Asphalt roads are also included in the dataset. It is also inclusive of driving events, such as lane change, braking, skidding, aquaplaning, turning right or left etc. 
